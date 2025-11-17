@@ -35,3 +35,15 @@ Perfect for quick EDA, assignments, mini-projects, or just exploring your data w
 DaVis keeps things simple — upload, preview, visualize.
 No confusing buttons, no complicated options.
 Just pure, fast, no-nonsense data exploration.
+
+**Installation + Usage section in README**
+
+how to clone the repo, install dependencies, and run locally (for dev users).
+
+git clone https://github.com/Pmskabir1234/DaVis-Data-Visualizer.git
+
+cd DaVis-Data-Visualizer
+
+pip install -r requirements.txt
+
+streamlit run app.py
