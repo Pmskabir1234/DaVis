@@ -42,7 +42,7 @@ how to clone the repo, install dependencies, and run locally (for dev users).
 
 git clone https://github.com/Pmskabir1234/DaVis-Data-Visualizer.git
 
-cd DaVis-Data-Visualizer
+cd DaVis
 
 pip install -r requirements.txt
 
