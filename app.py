@@ -11,7 +11,7 @@ def get_db():
         host='localhost',
         user='root',
         password='kabir123@',
-        database='davis'
+        database='davis_app'
 )
 def hash_pw(password):
     return bcrypt.hashpw(password.encode(), bcrypt.gensalt())
