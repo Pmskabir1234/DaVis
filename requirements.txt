@@ -3,5 +3,5 @@ pandas
 matplotlib
 openpyxl
 numpy
-mysql
+mysql-connector-python
 bcrypt
