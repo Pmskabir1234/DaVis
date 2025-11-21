@@ -6,6 +6,8 @@ import openpyxl
 import mysql.connector
 import bcrypt
 
+st.set_page_config(page_title='DaVis', page_icon='📊', layout='centered')
+
 def get_db():
     return mysql.connector.connect(
         host='localhost',
@@ -75,7 +77,6 @@ if not st.session_state.logged_in:
 
 st.success(f"Welcome {st.session_state.current_user}.....")
 
-st.set_page_config(page_title='DaVis', page_icon='📊', layout='centered')
 
 st.markdown(
     "<h1>"
