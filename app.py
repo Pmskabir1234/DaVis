@@ -3,6 +3,77 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import copy
 import openpyxl
+import mysql.connector
+import bcrypt
+
+def get_db():
+    return mysql.connector.connect(
+        host='localhost',
+        user='root',
+        password='kabir123@',
+        database='davis'
+)
+def hash_pw(password):
+    return bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+
+def verify_pw(password,hashed):
+    return bcrypt.checkpw(password.encode(),hashed)
+
+def signup_user(username,password):
+    db = get_db()
+    cur = db.cursor()
+
+    hashed = hash_pw(password)
+
+    try:
+        cur.execute("INSERT INTO users (username, password) VALUES (%s, %s)",(username,hashed))
+        db.commit()
+
+        return True
+    except:
+        return False
+    
+def login_user(username,password):
+    db = get_db()
+    cur = db.cursor()
+
+    cur.execute("SELECT password FROM users WHERE username=%s",(username,))
+    result = cur.fetchone()
+
+    if result is None:
+        return False
+    
+    stored_hash = result[0]
+    return verify_pw(password,stored_hash)
+
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
+if not st.session_state.logged_in:
+    st.title("One step away....")
+
+    mode = st.selectbox("Choose:",['Login','Sign Up'])
+    user = st.text_input("Username")
+    pwd = st.text_input("Password",type='password')
+
+    if mode == 'Sign Up':
+        if st.button("Create Account"):
+            if signup_user(user,pwd):
+                st.success("Account Created! You can log in.")
+            else:
+                st.error("Username already taken!")
+
+    if mode == 'Login':
+        if st.button("Log In"):
+            if login_user(user,pwd):
+                st.session_state.logged_in = True
+                st.session_state.current_user = user
+                st.rerun()
+            else:
+                st.error("Invalid login!")
+    st.stop()
+
+st.success(f"Welcome {st.session_state.current_user}.....")
 
 st.set_page_config(page_title='DaVis', page_icon='📊', layout='centered')
 
@@ -78,8 +149,8 @@ if loaded_file is not None:
         st.dataframe(filter_dataframe(df))
     
     except Exception as e:
-        print(f"The problem is {e}") #for backend
-        st.error(f"Opps! {e} is causing some problem")
+        print(f"The problem is {e}")
+        st.error(f"Maybe the file is causing problem...")
 
 
 st.markdown(
