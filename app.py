@@ -3,18 +3,25 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import copy
 import openpyxl
-import mysql.connector
+import sqlite3
 import bcrypt
+from builtins import memoryview
 
 st.set_page_config(page_title='DaVis', page_icon='📊', layout='centered')
 
+DB_NAME = "users.db"
+
 def get_db():
-    return mysql.connector.connect(
-        host='localhost',
-        user='root',
-        password='kabir123@',
-        database='davis'
-)
+    conn = sqlite3.connect(DB_NAME, detect_types=sqlite3.PARSE_DECLTYPES)
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+                username TEXT PRIMARY KEY,
+                password BLOB NOT NULL 
+        )
+        """)
+    return conn
+    
+
 def hash_pw(password):
     return bcrypt.hashpw(password.encode(), bcrypt.gensalt())
 
@@ -28,24 +35,33 @@ def signup_user(username,password):
     hashed = hash_pw(password)
 
     try:
-        cur.execute("INSERT INTO users (username, password) VALUES (%s, %s)",(username,hashed))
+        cur.execute("INSERT INTO users (username, password) VALUES (?, ?)",(username,hashed))
         db.commit()
-
+        db.close()
         return True
     except:
+        db.close()
         return False
     
 def login_user(username,password):
-    db = get_db()
-    cur = db.cursor()
+    conn = get_db()
+    cur = conn.cursor()
 
-    cur.execute("SELECT password FROM users WHERE username=%s",(username,))
+    cur.execute("SELECT password FROM users WHERE username=?",(username,))
     result = cur.fetchone()
+    conn.close()
 
     if result is None:
         return False
     
     stored_hash = result[0]
+    
+    # Ensure stored_hash is bytes
+    if isinstance(stored_hash, str):
+        stored_hash = stored_hash.encode()
+    elif isinstance(stored_hash,memoryview):
+        stored_hash = stored_hash.tobytes()
+
     return verify_pw(password,stored_hash)
 
 if "logged_in" not in st.session_state:
