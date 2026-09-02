@@ -1,6 +1,6 @@
 **DaVis – Your Data Decoder & Visualizer Buddy 📊**
 
-**[First Stable Version is out!]([https://your-app.streamlit.app](https://saadkabir-davis.streamlit.app/))**
+[![First Stable Version Out Now!](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://saadkabir-davis.streamlit.app/)
 
 **1. Overview**
 
@@ -8,17 +8,23 @@ DaVis is a lightweight and beginner-friendly Streamlit app that helps you quickl
 Just upload your file, pick a column, and boom — instant visualization.
 Perfect for quick EDA, assignments, mini-projects, or just exploring your data without writing a single line of code.
 
+---
+
 **2. Language Used**
 
 Python
 
-3. Libraries Used
+---
+
+**3. Libraries Used**
 
 Streamlit → UI, file upload, interactive components
 
 Pandas → Data loading & dataframe operations
 
 Matplotlib → Generating bar chart visualizations
+
+---
 
 **4. Features**
 
@@ -32,20 +38,22 @@ Matplotlib → Generating bar chart visualizations
 
  Auto-generated bar charts with titles & labels
 
+---
+
 **Bottom Lines**
 
 DaVis keeps things simple — upload, preview, visualize.
 No confusing buttons, no complicated options.
 Just pure, fast, no-nonsense data exploration.
 
-**Installation + Usage section in README**
+**Installation + Usage**
 
-how to clone the repo, install dependencies, and run locally (for dev users).
+i. how to clone the repo, install dependencies, and run locally (for dev users).
 
-git clone https://github.com/Pmskabir1234/DaVis-Data-Visualizer.git
+ii. git clone https://github.com/Pmskabir1234/DaVis-Data-Visualizer.git
 
-cd DaVis
+iii. cd DaVis
 
-pip install -r requirements.txt
+iv. pip install -r requirements.txt
 
-streamlit run app.py
+v. streamlit run app.py
