@@ -1,5 +1,7 @@
 **DaVis – Your Data Decoder & Visualizer Buddy 📊**
 
+**[First Stable Version is out!]([https://your-app.streamlit.app](https://saadkabir-davis.streamlit.app/))**
+
 **1. Overview**
 
 DaVis is a lightweight and beginner-friendly Streamlit app that helps you quickly upload, preview, and visualize your CSV datasets.
@@ -8,27 +10,27 @@ Perfect for quick EDA, assignments, mini-projects, or just exploring your data w
 
 **2. Language Used**
 
-💠Python
+Python
 
 3. Libraries Used
 
-💠Streamlit → UI, file upload, interactive components
+Streamlit → UI, file upload, interactive components
 
-💠Pandas → Data loading & dataframe operations
+Pandas → Data loading & dataframe operations
 
-💠Matplotlib → Generating bar chart visualizations
+Matplotlib → Generating bar chart visualizations
 
 **4. Features**
 
-💠📂 Upload CSV files directly
+ Upload CSV files directly
 
-💠🔍 One-click tabular preview of your dataset
+ One-click tabular preview of your dataset
 
-💠📊 Select any column and visualize it instantly
+ Select any column and visualize it instantly
 
-💠🚀 Fast, simple, and clean interface
+ Fast, simple, and clean interface
 
-💠🎯 Auto-generated bar charts with titles & labels
+ Auto-generated bar charts with titles & labels
 
 **Bottom Lines**
 
